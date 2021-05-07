@@ -9,10 +9,16 @@ function calcFatorial(num) {
   return calcFatorial(n - 1) * n;
 }
 
+function parOuImpar(numero) {
+  const x = parseInt(numero);
+  if (x === 0) return "Zero não é par nem ímpar";
+}
+
 const UseEffect = (props) => {
   const [number, setNumber] = useState(1);
   const [fatorial, setFatorial] = useState(1);
 
+  // Ex #01
   // useEffect utiliza dois params uma function e um array
   useEffect(
     function () {
@@ -31,6 +37,15 @@ const UseEffect = (props) => {
       }
     },
     [fatorial]
+  );
+
+  // Ex #02
+  const [status, setStatus] = useState("Ímpar");
+  useEffect(
+    function () {
+      setStatus(number % 2 === 0 ? "Par" : "Ímpar");
+    },
+    [number]
   );
 
   return (
@@ -55,7 +70,13 @@ const UseEffect = (props) => {
         />
       </div>
       <SectionTitle title="Exercício #02" />
-      <div className="center"></div>
+      <div className="center">
+        {/* Usar span com label e fazer cálculo se n é par ou ímpar */}
+        <div>
+          <span className="text">Status: </span>
+          <span className="text red">{status}</span>
+        </div>
+      </div>
     </div>
   );
 };
